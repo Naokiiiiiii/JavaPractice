@@ -1,4 +1,4 @@
-package src.model;
+package src.section2.ObjectOrientation.model;
 
 import java.time.LocalDate;
 

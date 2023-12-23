@@ -1,9 +1,9 @@
-package src;
+package src.section2.ObjectOrientation;
 
 import java.time.LocalDate;
 
-import src.model.Dog;
-import src.model.Person;
+import src.section2.ObjectOrientation.model.Dog;
+import src.section2.ObjectOrientation.model.Person;
 
 class HelloWorld {
   public static void main(String[] args) {
