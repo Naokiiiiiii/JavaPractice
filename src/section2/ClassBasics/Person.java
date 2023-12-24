@@ -1,24 +1,33 @@
 package src.section2.ClassBasics;
 
-import src.section2.ClassBasics.business.Company;
-
 public class Person {
-  private final double PI = 3.14;
-  private final String MY_BIG_CONSTANT = "Hi, this is my constant message";
-  private String firstName = "Jerry";
-  private int age;
-  private long id;
-  private char middleInitial = 'J';
-  private byte myByte;
-  static private Company company = new Company();
-  static private Company company1 = new Company();
-  private NewsAgency agency;
 
-  public void mytestMethod() {
-    var age = 21;
-    var name = "Jake";
-    String jerry = "Jerry";
-    int years = 67;
-    var mary = "Mary";
+  private String middleName = "Christopher";
+
+  public void sayHello() {
+    System.out.println("Hello");
   }
+
+  public void saySomething(String message) {
+    System.out.println(message);
+  }
+  
+  public char getMiddleInitial() {
+    return middleName.charAt(0);
+  }
+
+  public int add(int num1, int num2) {
+    return num1 + num2;
+  }
+
+  public static void main(String[] args) {
+    Person p1 = new Person();
+    p1.sayHello();
+    p1.saySomething("My groovy message");
+    p1.saySomething("Here's something else to say");
+    char middleInitial = p1.getMiddleInitial();
+    System.out.println(middleInitial);
+    System.out.println(p1.add(10, 2));
+  }
+
 }
