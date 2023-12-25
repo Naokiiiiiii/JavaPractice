@@ -9,5 +9,11 @@ public class LearnStrings {
 
     System.out.println(fruit == anotherFruit);
     System.out.println(vegerable == anotherVegerable);
+
+    String myText = "abcdefg";
+    System.out.println(myText.toUpperCase());
+
+    String myText2 = "ABCGEFG";
+    System.out.println(myText2.toLowerCase());
   }
 }
