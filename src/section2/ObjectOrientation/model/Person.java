@@ -17,6 +17,10 @@ public class Person {
     this.dob = dob;
   }
 
+  
+  protected Person() {
+  }
+
   public Person getSpouse() {
     return spouse;
   }
