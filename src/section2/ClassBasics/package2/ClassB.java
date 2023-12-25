@@ -13,4 +13,8 @@ public class ClassB {
   protected void protectedMethod() {
     System.out.println("This is the protected method of ClassB");
   }
+
+  void packageProtected() {
+    System.out.println("This is the package protected method");
+  }
 }
