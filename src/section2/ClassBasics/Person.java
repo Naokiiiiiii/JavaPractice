@@ -4,6 +4,7 @@ import java.time.LocalDate;
 
 public class Person {
   private String firstName;
+
   private String middleName = "Christopher";
   public String lastName;
   protected LocalDate dob;
@@ -14,6 +15,10 @@ public class Person {
 
   public void saySomething(String message) {
     System.out.println(message);
+  }
+
+  public String getFirstName() {
+    return firstName;
   }
   
   public char getMiddleInitial() {

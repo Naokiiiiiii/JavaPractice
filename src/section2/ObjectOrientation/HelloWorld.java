@@ -19,5 +19,10 @@ class HelloWorld {
     tom.setPet(fido);
 
     System.out.println(tom);
+
+    Person johny = new Person("johny", "smith", LocalDate.of(1985, 12, 3));
+    System.out.format("The person's first name is: %s.", johny.getFirstName());
+    johny.setLastName("smith");
+    System.out.format("The person's last name is: %s.", johny.getLastName());
   }
 }
