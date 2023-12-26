@@ -33,6 +33,14 @@ public class LearnStrings {
     System.out.format("'%s'", firstName2.stripIndent());
 
     System.out.format("'%s'", split(firstName));
+
+    String myText5 = "Apples";
+    String middleName = "Christopher";
+
+    int length = middleName.length();
+    if (length > 9) {
+      System.out.println(middleName.charAt(9));
+    }
   }
 
   public static String split(String text) {
