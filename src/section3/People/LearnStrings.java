@@ -34,7 +34,6 @@ public class LearnStrings {
 
     System.out.format("'%s'", split(firstName));
 
-    String myText5 = "Apples";
     String middleName = "Christopher";
 
     int length = middleName.length();
