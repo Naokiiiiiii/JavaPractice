@@ -40,9 +40,21 @@ public class LearnStrings {
     if (length > 9) {
       System.out.println(middleName.charAt(9));
     }
+
+    String firstWord = "Apple";
+    String secondWord = "apple";
+
+    System.out.println(compareToIgnoreCase(firstWord, secondWord));
+
   }
 
   public static String split(String text) {
     return text.replace(" ", "");
+  }
+
+  public static int compareToIgnoreCase(String text1, String text2) {
+    String lowerText1 = text1.toLowerCase();
+    String lowerText2 = text2.toLowerCase();
+    return lowerText1.compareTo(lowerText2);
   }
 }
