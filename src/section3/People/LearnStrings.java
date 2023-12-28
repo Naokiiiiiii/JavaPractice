@@ -46,6 +46,46 @@ public class LearnStrings {
 
     System.out.println(compareToIgnoreCase(firstWord, secondWord));
 
+
+    String myText5 = "Four score and seven years ago";
+    System.out.println(myText5.contains("seven"));
+
+    String text1 = "this is my text1";
+    String text2 = "this is my text2";
+    System.out.println(text1 + " " + text2 + " hello");
+
+    System.out.println(text1.concat(" my string literal"));
+
+    String finalString = new StringBuilder().append(text1).append(text2).toString();
+    System.out.println(finalString);
+
+    String otherFinalString = new StringBuffer().append(text1).append(" ").append(text2).toString();
+    System.out.println(otherFinalString);
+
+    System.out.format("%s %s\n", text1, text2);
+    String oneMoreFinalString = String.format("%s %s", text1, text2);
+    System.out.println(oneMoreFinalString);
+
+    String myText6 = "for score and seven years ago";
+    System.out.println(myText6.length());
+    char[] chars = myText6.toCharArray();
+    int index = 4;
+    if (index < myText6.length()) {
+      System.out.println(chars[index]);
+    }
+    String myText7 = "for";
+    String secondText = "score";
+    StringBuilder builder = new StringBuilder(myText7.length() + secondText.length())
+        .append(myText7)
+        .append(secondText);
+    System.out.println(builder.toString());
+
+    String myText8 = "apple";
+    String firstPart = myText8.substring(0, 1);
+    String secondParrt = myText8.substring(1);
+    String myNewText = firstPart.toUpperCase().concat(secondParrt);
+    System.out.println(myNewText);
+
   }
 
   public static String split(String text) {
