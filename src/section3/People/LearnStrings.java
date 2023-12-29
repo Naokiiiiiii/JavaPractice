@@ -96,6 +96,10 @@ public class LearnStrings {
     String[] people = text.split("\n");
     System.out.println(people.length);
     System.out.println(people[1]);
+
+    String filename = "myfile.txt";
+    System.out.println(filename.endsWith(".txt"));
+    System.out.println(filename.startsWith("my"));
   }
 
   public static String split(String text) {
