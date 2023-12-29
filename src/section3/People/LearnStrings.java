@@ -86,6 +86,8 @@ public class LearnStrings {
     String myNewText = firstPart.toUpperCase().concat(secondParrt);
     System.out.println(myNewText);
 
+    String myText9 = "abcabc";
+    System.out.println(myText9.indexOf("a", 3));
   }
 
   public static String split(String text) {
