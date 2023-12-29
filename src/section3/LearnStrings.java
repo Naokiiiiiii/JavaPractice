@@ -1,4 +1,4 @@
-package src.section3.People;
+package src.section3;
 
 public class LearnStrings {
   public static void main(String[] args) {
@@ -100,6 +100,14 @@ public class LearnStrings {
     String filename = "myfile.txt";
     System.out.println(filename.endsWith(".txt"));
     System.out.println(filename.startsWith("my"));
+
+    String firstText = "Apple";
+    String secondText2 = "Apple";
+    boolean result = firstText.contentEquals(secondText2);
+    System.out.println(result);
+
+    StringBuilder secondText3 = new StringBuilder("Apple");
+    System.out.println(firstText.contentEquals(secondText3));
   }
 
   public static String split(String text) {
