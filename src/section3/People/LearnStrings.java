@@ -88,6 +88,14 @@ public class LearnStrings {
 
     String myText9 = "abcabc";
     System.out.println(myText9.indexOf("a", 3));
+
+    String text = """
+        Smith,Freed,1/1/79,111 ABC St.,Apple,CA
+        McGuire,Jerry,2/2/80,2222 DEF St.,Orange,NV
+        """;
+    String[] people = text.split("\n");
+    System.out.println(people.length);
+    System.out.println(people[1]);
   }
 
   public static String split(String text) {
