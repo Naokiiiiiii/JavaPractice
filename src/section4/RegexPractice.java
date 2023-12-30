@@ -7,12 +7,16 @@ public class RegexPractice {
   public static void main(String[] args) {
     System.out.println("aat".matches("[^cCb]at"));
 
-    String regex = "(?:(?<countryCode>\\d{3})[-,]*)(\\d{3}[-\\s]+)(\\d{3,4})";
+    String regex = """
+        (?:(?<countryCode>\\d{3})[-,]*)
+        (\\d{3}[-\\s]+)
+        (\\d{3,4})
+      """;
     String phoneNumber = "232-333-2365";
 
     System.out.println("321222- 1231".matches(regex));
 
-    Pattern pat = Pattern.compile(regex);
+    Pattern pat = Pattern.compile(regex, Pattern.COMMENTS);
     Matcher mat = pat.matcher(phoneNumber);
     
     if (mat.matches()) {
