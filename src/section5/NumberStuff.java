@@ -7,6 +7,13 @@ public class NumberStuff {
     short myBigShort = 45;
     char myChar = '9';
     char myA = 'A';
-    System.out.println(myByte);
+    double myDouble = 3.141592;
+    float myFloat = 3.141592f;
+
+    float num1 = 2.15f;
+    float num2 = 1.10f;
+    System.out.println(num1 - num2);
+
+    System.out.println(7.0/4);
   }
 }
