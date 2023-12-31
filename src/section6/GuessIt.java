@@ -14,5 +14,33 @@ public class GuessIt {
     } else {
       System.out.println("one");
     }
+
+    switch (randomInt) {
+      case 1:
+        System.out.println("switch 1");
+        break;
+      case 2:
+        System.out.println("switch 2");
+        break;
+      default:
+        break;
+    }
+
+    String card = "ace";
+    int currentTotalValue = 10;
+
+    int currentValue = switch (card) {
+      case "king", "queen", "jack" -> 10;
+      case "ace" -> {
+        if (currentTotalValue < 11) {
+          yield 11;
+        } else {
+          yield 1;
+        }
+      }
+      default -> Integer.parseInt(card);
+    };
+    System.out.printf("Current Card Value: %d%n", currentValue);
+    System.out.printf("Total value; %d%n", currentTotalValue * currentValue);
   }
 }
