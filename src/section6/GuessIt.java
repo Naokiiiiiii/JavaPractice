@@ -49,6 +49,7 @@ public class GuessIt {
       int guessNum = Integer.parseInt(guessNumText);
       if (guessNum == randomNum) {
         System.out.printf("The random number was %d. You got it!%n", randomNum);
+        return;
       } else {
         System.out.printf("The random number was %d. You didn't get it!%n", randomNum);
       }
