@@ -59,8 +59,8 @@ public class GuessIt {
     }
 
     System.out.printf("Random number is %d%n.", randomNum);
-    int wrongGuessCount = 1;
     do {
+      int wrongGuessCount = 1;
       guessNumText = System.console().readLine("Please guess a number between 1 and 10 inclusively: ");
       if (guessNumText.matches("\\d{1,2}")) {
         int guessNum = Integer.parseInt(guessNumText);
@@ -74,5 +74,19 @@ public class GuessIt {
         }
       }
     } while (!"q".equals(guessNumText));
+
+    for (int wrongGuessCount = 1; wrongGuessCount <= 5; wrongGuessCount++) {
+      guessNumText = System.console().readLine("Please guess a number between 1 and 10 inclusively: ");
+      if (guessNumText.matches("\\d{1,2}")) {
+        int guessNum = Integer.parseInt(guessNumText);
+        if (guessNum == randomNum) {
+          String tryText = wrongGuessCount == 1 ? "try" : "tries";
+          System.out.printf("The random number was %d. You got it in %d of %s!%n", randomNum, wrongGuessCount, tryText);
+          return;
+        } else {
+          System.out.printf("The random number was %d. You didn't get it!%n", randomNum);
+        }
+      }
+    }
   }
 }
