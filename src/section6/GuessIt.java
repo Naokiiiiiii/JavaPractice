@@ -43,15 +43,18 @@ public class GuessIt {
     System.out.printf("Current Card Value: %d%n", currentValue);
     System.out.printf("Total value; %d%n", currentTotalValue * currentValue);
 
-    while (true) {
-      int randomNum = new Random().nextInt(10) + 1;
-      String guessNumText = System.console().readLine("Please guess a number between 1 and 10 inclusively: ");
-      int guessNum = Integer.parseInt(guessNumText);
-      if (guessNum == randomNum) {
-        System.out.printf("The random number was %d. You got it!%n", randomNum);
-        return;
-      } else {
-        System.out.printf("The random number was %d. You didn't get it!%n", randomNum);
+    int randomNum = new Random().nextInt(10) + 1;
+    String guessNumText = null;
+    while (!"q".equals(guessNumText)) {
+      guessNumText = System.console().readLine("Please guess a number between 1 and 10 inclusively: ");
+      if (guessNumText.matches("\\d{1,2}")) {
+        int guessNum = Integer.parseInt(guessNumText);
+        if (guessNum == randomNum) {
+          System.out.printf("The random number was %d. You got it!%n", randomNum);
+          return;
+        } else {
+          System.out.printf("The random number was %d. You didn't get it!%n", randomNum);
+        }
       }
     }
   }
