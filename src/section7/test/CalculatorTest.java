@@ -27,4 +27,11 @@ public class CalculatorTest {
     int sum = calc.add(1, 1);
     assertEquals(2, sum);
   }
+
+  @Test
+  public void canAddMaxIntPlusOne() {
+    int sum = calc.add(Integer.MAX_VALUE, 1);
+    System.out.println(sum);
+    assertEquals(Integer.MAX_VALUE + 1, sum);
+  }
 }
