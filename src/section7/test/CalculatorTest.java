@@ -34,4 +34,16 @@ public class CalculatorTest {
     System.out.println(sum);
     assertEquals(Integer.MAX_VALUE + 1, sum);
   }
+
+  @Test
+  public void annuityExample() {
+    String answer = calc.calcAnnuity("22000", 7, ".06", 1);
+    assertEquals("$184,664.43", answer);
+  }
+
+  @Test
+  public void annuityPractice2() {
+    String answer = calc.calcAnnuity("1200", 10, ".08", 4);
+    assertEquals("$72,482.38", answer);
+  }
 }
