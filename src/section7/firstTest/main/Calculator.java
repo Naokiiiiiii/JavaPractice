@@ -1,4 +1,4 @@
-package src.section7.main;
+package src.section7.firstTest.main;
 
 import java.math.BigDecimal;
 import java.text.NumberFormat;

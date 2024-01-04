@@ -1,11 +1,11 @@
-package src.section7.test;
+package src.section7.firstTest.test;
 
 import static org.junit.Assert.assertEquals;
 
 import org.junit.Before;
 import org.junit.Test;
 
-import src.section7.main.Calculator;
+import src.section7.firstTest.main.Calculator;
 
 public class CalculatorTest {
 
