@@ -30,7 +30,7 @@ public class GuessingGameTest {
   public void testSimpleLoseSituation() {
     GuessingGame game = new GuessingGame();
     String message = game.guess(-5);
-    assertEquals("You didn't get it", message);
+    assertEquals("You didn't get it - you're too low", message);
   }
 
   @Test
