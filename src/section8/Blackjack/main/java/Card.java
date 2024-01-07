@@ -35,4 +35,12 @@ public class Card {
     // myHand.add(card2);
     // int total = myHand.getTotal();
   }
+
+  public int getValue() {
+    return switch (this.rank) {
+      case JACK, QUEEN, KING -> 10;
+      default -> this.rank.ordinal() + 1;
+    };
+    // return this.rank == Rank.JACK ? 10 : this.rank.ordinal() + 1;
+  }
 }
