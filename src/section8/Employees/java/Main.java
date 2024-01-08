@@ -1,5 +1,6 @@
 package src.section8.Employees.java;
 
+import java.text.NumberFormat;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -27,5 +28,7 @@ public class Main {
         default -> 0;
       };
     }
+    NumberFormat currencyInstance = NumberFormat.getCurrencyInstance();
+    System.out.printf("The total prayment should be %s%n", currencyInstance.format(totalSalary));
   }
 }
