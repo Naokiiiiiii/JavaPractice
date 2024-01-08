@@ -13,7 +13,6 @@ public class Main {
             Flinstone, Fred, 1/1/1900, Programmer, {locpd=6000,yoe=10,iq=140}
             Flinstone, Fred, 1/1/1900, Programmer, {locpd=7000,yoe=10,iq=140}
             Flinstone, Fred, 1/1/1900, Programmer, {locpd=9000,yoe=10,iq=140}
-            Flinstone, Fred, 1/1/1900, Programmerzzzzz, {locpd=10000,yoe=10,iq=140}
             Flinstone2, Fred2, 1/1/1900, Programmer, {locpd=1300,yoe=14,iq=100}
             Flinstone3, Fred3, 1/1/1900, Programmer, {locpd=2300,yoe=8,iq=105}
             Flinstone4, Fred4, 1/1/1900, Programmer, {locpd=1630,yoe=3,iq=115}
@@ -35,34 +34,21 @@ public class Main {
     Pattern peoplePat = Pattern.compile(peopleRegex);
     Matcher peopleMat = peoplePat.matcher(peopleText);
 
-    int totalSalary = 0;
+    int totalSalaries = 0;
+    Employee employee = null;
     while (peopleMat.find())
     {
-      totalSalary += switch (peopleMat.group("role")) {
-        case "Programmer" -> {
-          Programmer programmer = new Programmer(peopleMat.group());
-          System.out.println(programmer.toString());
-          yield programmer.getSalary();
-        }
-        case "Manager" -> {
-          Manager manager = new Manager(peopleMat.group());
-          System.out.println(manager.toString());
-          yield manager.getSalary();
-        }
-        case "Analyst" -> {
-          Analyst analyst = new Analyst(peopleMat.group());
-          System.out.println(analyst.toString());
-          yield analyst.getSalary();
-        }
-        case "CEO" -> {
-          CEO ceo = new CEO(peopleMat.group());
-          System.out.println(ceo.toString());
-          yield ceo.getSalary();
-        }
-        default -> 0;
+      employee = switch (peopleMat.group("role")) {
+        case "Programmer" -> new Programmer(peopleMat.group());
+        case "Manager" -> new Manager(peopleMat.group());
+        case "Analyst" -> new Analyst(peopleMat.group());
+        case "CEO" -> new CEO(peopleMat.group());
+        default -> null;
       };
+      System.out.println(employee.toString());
+      totalSalaries += employee.getSalary();
     }
     NumberFormat currencyInstance = NumberFormat.getCurrencyInstance();
-    System.out.printf("The total prayment should be %s%n", currencyInstance.format(totalSalary));
+    System.out.printf("The total prayment should be %s%n", currencyInstance.format(totalSalaries));
   }
 }
