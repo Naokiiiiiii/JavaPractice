@@ -30,6 +30,8 @@ public class Main {
             Rubble, Betty, 4/4/1915, CEO, {avgStockPrice=300}
             """;
 
+    // Flinstone, Fred, 1/1/1900, Programmerzzzzz, {locpd=10000,yoe=10,iq=140}
+
     String peopleRegex = "(?<lastName>\\w+),\\s*(?<firstName>\\w+),\\s*(?<dob>\\d{1,2}/\\d{1,2}/\\d{4}),\\s*(?<role>\\w+)(?:,\\s*\\{(?<details>.*)\\})?";
     Pattern peoplePat = Pattern.compile(peopleRegex);
     Matcher peopleMat = peoplePat.matcher(peopleText);
