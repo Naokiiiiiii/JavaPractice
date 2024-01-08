@@ -57,35 +57,9 @@ public class Main {
           yield programmer.getSalary();
         }
         case "Manager" -> {
-          String details = peopleMat.group("details");
-          Matcher mgrMat = mgrPat.matcher(details);
-          int salary = 0;
-          if (mgrMat.find()) {
-            int orgSize = Integer.parseInt(mgrMat.group("orgSize"));
-            int directReports = Integer.parseInt(mgrMat.group("dr"));
-            salary = 3500 + orgSize * directReports;
-          } else {
-            salary = 3500;
-          }
-          String lastName = peopleMat.group("lastName");
-          String firstNAme = peopleMat.group("firstName");
-          System.out.printf("%s, %s: %s\n", lastName, firstNAme, NumberFormat.getCurrencyInstance().format(salary));
-          yield salary;
-        }
-        case "Analyst" -> {
-          String details = peopleMat.group("details");
-          Matcher analystMat = analystPat.matcher(details);
-          int salary = 0;
-          if (analystMat.find()) {
-            int projectCount = Integer.parseInt(analystMat.group("projectCount"));
-            salary = 2500 + projectCount * 2;
-          } else {
-            salary = 2500;
-          }
-          String lastName = peopleMat.group("lastName");
-          String firstNAme = peopleMat.group("firstName");
-          System.out.printf("%s, %s: %s\n", lastName, firstNAme, NumberFormat.getCurrencyInstance().format(salary));
-          yield salary;
+          Manager manager = new Manager(peopleMat.group());
+          System.out.println(manager.toString());
+          yield manager.getSalary();
         }
         case "CEO" -> {
           String details = peopleMat.group("details");
