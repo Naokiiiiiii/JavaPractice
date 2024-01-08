@@ -11,8 +11,6 @@ public class Analyst {
   private String firstName;
   private LocalDate dob;
   private int projectCount = 0;
-  private int yearsOfExp = 0;
-  private int iq = 0;
 
   private final String peopleRegex = "(?<lastName>\\w+),\\s*(?<firstName>\\w+),\\s*(?<dob>\\d{1,2}/\\d{1,2}/\\d{4}),\\s*(?<role>\\w+)(?:,\\s*\\{(?<details>.*)\\})?";
   private final Pattern peoplePat = Pattern.compile(peopleRegex);
