@@ -35,18 +35,6 @@ public class Main {
     Pattern peoplePat = Pattern.compile(peopleRegex);
     Matcher peopleMat = peoplePat.matcher(peopleText);
 
-    String progRegex = "\\w+\\=(?<locpd>\\w+)\\,\\w+\\=(?<yoe>\\w+)\\,\\w+\\=(?<iq>\\w+)";
-    Pattern coderPat = Pattern.compile(progRegex);
-
-    String mgrRegex = "\\w+=(?<orgSize>\\w+),\\w+=(?<dr>\\w+)";
-    Pattern mgrPat = Pattern.compile(mgrRegex);
-
-    String analystRegex = "\\w+=(?<projectCount>\\w+)";
-    Pattern analystPat = Pattern.compile(analystRegex);
-
-    String ceoRegex = "\\w+=(?<avgStockPrice>\\w+)";
-    Pattern ceoPat = Pattern.compile(ceoRegex);
-
     int totalSalary = 0;
     while (peopleMat.find())
     {
@@ -61,20 +49,15 @@ public class Main {
           System.out.println(manager.toString());
           yield manager.getSalary();
         }
+        case "Analyst" -> {
+          Analyst analyst = new Analyst(peopleMat.group());
+          System.out.println(analyst.toString());
+          yield analyst.getSalary();
+        }
         case "CEO" -> {
-          String details = peopleMat.group("details");
-          Matcher ceoMat = ceoPat.matcher(details);
-          int salary = 0;
-          if (ceoMat.find()) {
-            int avgStockPrice = Integer.parseInt(ceoMat.group("avgStockPrice"));
-            salary = 5000 * avgStockPrice;
-          } else {
-            salary = 5000;
-          }
-          String lastName = peopleMat.group("lastName");
-          String firstNAme = peopleMat.group("firstName");
-          System.out.printf("%s, %s: %s\n", lastName, firstNAme, NumberFormat.getCurrencyInstance().format(salary));
-          yield salary;
+          CEO ceo = new CEO(peopleMat.group());
+          System.out.println(ceo.toString());
+          yield ceo.getSalary();
         }
         default -> 0;
       };
