@@ -10,19 +10,33 @@ public abstract class Employee {
   protected String lastName;
   protected String firstName;
   protected LocalDate dob;
-
-  private final String peopleRegex = "(?<lastName>\\w+),\\s*(?<firstName>\\w+),\\s*(?<dob>\\d{1,2}/\\d{1,2}/\\d{4}),\\s*(?<role>\\w+)(?:,\\s*\\{(?<details>.*)\\})?";
+  private static final String PEOPLE_REGEX = "(?<lastName>\\w+),\\s*(?<firstName>\\w+),\\s*(?<dob>\\d{1,2}/\\d{1,2}/\\d{4}),\\s*(?<role>\\w+)(?:,\\s*\\{(?<details>.*)\\})?";
   private final NumberFormat moneyFormat = NumberFormat.getCurrencyInstance();
-  protected final Pattern peoplePat = Pattern.compile(peopleRegex);
+  public static final Pattern PEOPLE_PAT = Pattern.compile(PEOPLE_REGEX);
   protected final Matcher peopleMat;
   DateTimeFormatter atFormatter = DateTimeFormatter.ofPattern("M/d/yyyy");
 
   public Employee(String personText) {
-    peopleMat = peoplePat.matcher(personText);
+    peopleMat = PEOPLE_PAT.matcher(personText);
     if (peopleMat.find()) {
       this.lastName = peopleMat.group("lastName");
       this.firstName = peopleMat.group("firstName");
       this.dob = LocalDate.from(atFormatter.parse(peopleMat.group("dob")));
+    }
+  }
+
+  public static final Employee createEmployee(String employeeText) {
+    Matcher peopleMat = Employee.PEOPLE_PAT.matcher(employeeText);
+    if (peopleMat.find()) {
+      return switch (peopleMat.group("role")) {
+        case "Programmer" -> new Programmer(employeeText);
+        case "Manager" -> new Manager(employeeText);
+        case "Analyst" -> new Analyst(employeeText);
+        case "CEO" -> new CEO(employeeText);
+        default -> null;
+      };
+    } else {
+      return null;
     }
   }
 
