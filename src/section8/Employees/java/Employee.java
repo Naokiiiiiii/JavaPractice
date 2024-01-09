@@ -6,7 +6,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class Employee {
+public class Employee implements IEmployee {
   protected String lastName;
   protected String firstName;
   protected LocalDate dob;
@@ -26,7 +26,7 @@ public class Employee {
     }
   }
 
-  int getSalary() {
+  public int getSalary() {
     return 0;
   };
 
