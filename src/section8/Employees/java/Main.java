@@ -39,10 +39,8 @@ public class Main {
     while (peopleMat.find())
     {
       employee = Employee.createEmployee(peopleMat.group());
-      if (employee != null) {
-        System.out.println(employee.toString());
-        totalSalaries += employee.getSalary();
-      }
+      System.out.println(employee.toString());
+      totalSalaries += employee.getSalary();
     }
     NumberFormat currencyInstance = NumberFormat.getCurrencyInstance();
     System.out.printf("The total prayment should be %s%n", currencyInstance.format(totalSalaries));
