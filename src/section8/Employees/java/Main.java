@@ -1,6 +1,7 @@
 package src.section8.Employees.java;
 
 import java.text.NumberFormat;
+import java.time.LocalDate;
 import java.util.regex.Matcher;
 
 public class Main {
@@ -44,5 +45,9 @@ public class Main {
     }
     NumberFormat currencyInstance = NumberFormat.getCurrencyInstance();
     System.out.printf("The total prayment should be %s%n", currencyInstance.format(totalSalaries));
+
+    Weirdo larry = new Weirdo("David", "Larry", LocalDate.of(1990, 1, 1 ));
+    Weirdo jake = new Weirdo("Snake", "Jake");
+    jake.sayHello();
   }
 }

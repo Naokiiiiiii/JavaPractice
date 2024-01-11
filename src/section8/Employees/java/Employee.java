@@ -76,10 +76,6 @@ public abstract class Employee {
     }
   }
 
-  private final class MyInnerClass {
-    public int getStuff() {
-      System.out.println(firstName);
-      return 0;
-    }
+  public record Jumper(String firstName, String lastName) {
   }
 }
