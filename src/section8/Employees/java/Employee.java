@@ -34,16 +34,26 @@ public abstract class Employee {
 
   public static final Employee createEmployee(String employeeText) {
     Matcher peopleMat = Employee.PEOPLE_PAT.matcher(employeeText);
+    class MyLocalClass extends Employee {
+      public int getSalary() {
+        return 5;
+      }
+    }
     if (peopleMat.find()) {
       return switch (peopleMat.group("role")) {
         case "Programmer" -> new Programmer(employeeText);
         case "Manager" -> new Manager(employeeText);
         case "Analyst" -> new Analyst(employeeText);
         case "CEO" -> new CEO(employeeText);
-        default -> new DummyEmployee();
+        default -> new Employee() {
+          @Override
+          public int getSalary() {
+            return 0;
+          }
+        };
       };
     } else {
-      return new DummyEmployee();
+      return new MyLocalClass();
     }
   }
 
@@ -62,6 +72,13 @@ public abstract class Employee {
   private static final class DummyEmployee extends Employee {
     @Override
     public int getSalary() {
+      return 0;
+    }
+  }
+
+  private final class MyInnerClass {
+    public int getStuff() {
+      System.out.println(firstName);
       return 0;
     }
   }
