@@ -36,7 +36,7 @@ public class Main {
     NumberFormat.getCurrencyInstance();
 
     int totalSalaries = 0;
-    Employee employee = null;
+    IEmployee employee = null;
     while (peopleMat.find())
     {
       employee = Employee.createEmployee(peopleMat.group());

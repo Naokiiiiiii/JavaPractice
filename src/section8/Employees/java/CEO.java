@@ -3,7 +3,7 @@ package src.section8.Employees.java;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class CEO extends Employee {
+public class CEO extends Employee implements IEmployee {
   private int avgStockPrice = 0;
 
   private final String ceoRegex = "\\w+=(?<avgStockPrice>\\w+)";

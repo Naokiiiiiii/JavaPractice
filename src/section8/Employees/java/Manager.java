@@ -3,7 +3,7 @@ package src.section8.Employees.java;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class Manager extends Employee {
+public class Manager extends Employee implements IEmployee {
   private int orgSize = 0;
   private int directReports = 0;
 

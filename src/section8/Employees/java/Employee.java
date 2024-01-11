@@ -6,7 +6,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public abstract class Employee {
+public abstract class Employee implements IEmployee {
   protected String lastName;
   protected String firstName;
   protected LocalDate dob;
@@ -32,7 +32,7 @@ public abstract class Employee {
     }
   }
 
-  public static final Employee createEmployee(String employeeText) {
+  public static final IEmployee createEmployee(String employeeText) {
     Matcher peopleMat = Employee.PEOPLE_PAT.matcher(employeeText);
     class MyLocalClass extends Employee {
       public int getSalary() {
@@ -45,15 +45,10 @@ public abstract class Employee {
         case "Manager" -> new Manager(employeeText);
         case "Analyst" -> new Analyst(employeeText);
         case "CEO" -> new CEO(employeeText);
-        default -> new Employee() {
-          @Override
-          public int getSalary() {
-            return 0;
-          }
-        };
+        default -> () -> 0;
       };
     } else {
-      return new MyLocalClass();
+      return () -> 0;
     }
   }
 
@@ -69,7 +64,7 @@ public abstract class Employee {
         moneyFormat.format(getBonus()));
   }
   
-  private static final class DummyEmployee extends Employee {
+  private static final class DummyEmployee extends Employee implements IEmployee {
     @Override
     public int getSalary() {
       return 0;
