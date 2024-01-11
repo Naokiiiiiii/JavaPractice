@@ -4,7 +4,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class Programmer extends Employee implements IEmployee {
+public class Programmer extends Employee implements IEmployee, Chef {
   private int linesOfCode = 0;
   private int yearsOfExp = 0;
   private int iq = 0;
