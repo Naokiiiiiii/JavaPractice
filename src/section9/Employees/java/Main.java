@@ -3,9 +3,11 @@ package src.section9.Employees.java;
 import java.text.NumberFormat;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.regex.Matcher;
+
 
 public class Main {
   public static void main(String[] args) {
@@ -52,13 +54,9 @@ public class Main {
     removeNames.add("Barney4");
     removeNames.add("Fred2");
 
+    removeUndesirables(employees, removeNames);
+
     for (IEmployee worker :  employees) {
-      if (worker instanceof Employee) {
-        Employee tmpWorker = (Employee) worker;
-        if (removeNames.contains(tmpWorker.firstName)) {
-          employees.remove(worker);
-        }
-      }
       System.out.println(employees.toString());
       totalSalaries += worker.getSalary();
     }
@@ -69,5 +67,16 @@ public class Main {
     Weirdo larry = new Weirdo("David", "Larry", LocalDate.of(1990, 1, 1 ));
     Weirdo jake = new Weirdo("Snake", "Jake");
     jake.sayHello();
+  }
+
+  private static void removeUndesirables(List<IEmployee> employees, List<String> removeNames) {
+    for (Iterator<IEmployee> it = employees.iterator(); it.hasNext();) {
+      IEmployee worker = it.next();
+      if (worker instanceof Employee tmpWorker) {
+        if (removeNames.contains(tmpWorker.firstName)) {
+          it.remove();
+        }
+      }
+    }
   }
 }
