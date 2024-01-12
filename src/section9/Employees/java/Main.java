@@ -3,6 +3,7 @@ package src.section9.Employees.java;
 import java.text.NumberFormat;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.regex.Matcher;
 
@@ -39,28 +40,25 @@ public class Main {
 
     int totalSalaries = 0;
     IEmployee employee = null;
-    List<IEmployee> employees = new ArrayList<IEmployee>();
-    while (peopleMat.find())
-    {
+    List<IEmployee> employees = new LinkedList<IEmployee>();
+    while (peopleMat.find()){
       employee = Employee.createEmployee(peopleMat.group());
       employees.add(employee);
-      // if (employee instanceof Programmer prog) {
-      //   System.out.println(prog.getIq());
-      // } else if (employee instanceof Manager man) {
-      //   System.out.println(man.toString());
-      // } else if (employee instanceof Analyst) {
-      //   System.out.println();
-      // } else if (employee instanceof CEO) {
-      //   System.out.println();
-      // }
-      // else {
-      //   System.out.println("Default output");
-      // }
-      // System.out.println(employee.toString());
-      // totalSalaries += employee.getSalary();
     }
 
+    List<String> removeNames = new ArrayList<>();
+
+    removeNames.add("Wilma5");
+    removeNames.add("Barney4");
+    removeNames.add("Fred2");
+
     for (IEmployee worker :  employees) {
+      if (worker instanceof Employee) {
+        Employee tmpWorker = (Employee) worker;
+        if (removeNames.contains(tmpWorker.firstName)) {
+          employees.remove(worker);
+        }
+      }
       System.out.println(employees.toString());
       totalSalaries += worker.getSalary();
     }
