@@ -48,13 +48,12 @@ public class Main {
       employees.add(employee);
     }
 
-    List<String> removeNames = new ArrayList<>();
+    employees.remove(0);
+    employees.remove(1);
+    employees.remove(2);
 
-    removeNames.add("Wilma5");
-    removeNames.add("Barney4");
-    removeNames.add("Fred2");
-
-    removeUndesirables(employees, removeNames);
+    List<String> undesirables = List.of("Wilma5", "Barney4", "Fred2");
+    removeUndesirables(employees, undesirables);
 
     for (IEmployee worker :  employees) {
       System.out.println(employees.toString());
@@ -69,11 +68,11 @@ public class Main {
     jake.sayHello();
   }
 
-  private static void removeUndesirables(List<IEmployee> employees, List<String> removeNames) {
+  private static void removeUndesirables(List<IEmployee> employees, List<String> undesirables) {
     for (Iterator<IEmployee> it = employees.iterator(); it.hasNext();) {
       IEmployee worker = it.next();
       if (worker instanceof Employee tmpWorker) {
-        if (removeNames.contains(tmpWorker.firstName)) {
+        if (undesirables.contains(tmpWorker.firstName)) {
           it.remove();
         }
       }
