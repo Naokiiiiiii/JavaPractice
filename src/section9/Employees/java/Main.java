@@ -3,6 +3,7 @@ package src.section9.Employees.java;
 import java.text.NumberFormat;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
@@ -57,6 +58,13 @@ public class Main {
 
     IEmployee third = employees.get(2);
     employees.indexOf(third);
+
+    employees.sort(new Comparator<IEmployee>() {
+      @Override
+      public int compare(IEmployee o1, IEmployee o2) {
+        return 0;      
+      }
+    });
 
     for (IEmployee worker : employees) {
       System.out.println(employees.toString());
