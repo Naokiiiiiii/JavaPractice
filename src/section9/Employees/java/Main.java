@@ -52,10 +52,13 @@ public class Main {
     employees.remove(1);
     employees.remove(2);
 
-    List<String> undesirables = List.of("Wilma5", "Barney4", "Fred2");
+    List<String> undesirables = new ArrayList<>(List.of("Wilma5", "Barney4", "Fred2"));
     removeUndesirables(employees, undesirables);
 
-    for (IEmployee worker :  employees) {
+    IEmployee third = employees.get(2);
+    employees.indexOf(third);
+
+    for (IEmployee worker : employees) {
       System.out.println(employees.toString());
       totalSalaries += worker.getSalary();
     }
