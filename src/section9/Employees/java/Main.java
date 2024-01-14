@@ -43,7 +43,7 @@ public class Main {
 
     int totalSalaries = 0;
     IEmployee employee = null;
-    List<IEmployee> employees = new LinkedList<IEmployee>();
+    List<IEmployee> employees = new ArrayList<>();
     while (peopleMat.find()){
       employee = Employee.createEmployee(peopleMat.group());
       employees.add(employee);
@@ -73,10 +73,7 @@ public class Main {
     
     NumberFormat currencyInstance = NumberFormat.getCurrencyInstance();
     System.out.printf("The total prayment should be %s%n", currencyInstance.format(totalSalaries));
-
-    Weirdo larry = new Weirdo("David", "Larry", LocalDate.of(1990, 1, 1 ));
-    Weirdo jake = new Weirdo("Snake", "Jake");
-    jake.sayHello();
+    System.out.println(employees.size());
   }
 
   private static void removeUndesirables(List<IEmployee> employees, List<String> undesirables) {
