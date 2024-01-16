@@ -1,5 +1,9 @@
 package src.section10.Employee.java;
 
+import java.util.List;
+import java.util.stream.IntStream;
+import java.util.stream.Stream;
+
 public class StreamsStuff {
     public static void main(String[] args) {
         String peopleText = """
@@ -31,5 +35,32 @@ public class StreamsStuff {
             .lines()
             .map(Employee::createEmployee)
             .forEach(System.out::println);
+
+        List<String> nums = List.of("one", "two", "three", "foru");
+        nums
+            .stream()
+            .map(String::hashCode)
+            .map(Integer::toHexString)
+            .forEach(System.out::println);
+
+        Stream.of(1,2,3,4)
+            .map(Integer::toHexString)
+            .forEach(System.out::println);
+
+        record Car(String make, String model){}
+
+        Stream.of(new Car("Ford", "Bronce"), new Car("Tesla", "A"), new Car("Tesla", "3"))
+            .filter(c -> "Tesla".equals(c.make))
+            .forEach(System.out::println);
+
+        IntStream.range(1, 101)
+            .forEach(System.out::println);
+
+        IntStream.rangeClosed(1, 5)
+            .boxed()
+            .map(String::valueOf)
+            .map(s -> s.concat("-"))
+            .forEach(System.out::println);
+
     }
 }
