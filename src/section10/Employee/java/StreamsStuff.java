@@ -1,8 +1,11 @@
 package src.section10.Employee.java;
 
+import java.util.Comparator;
 import java.util.List;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
+
+import static java.util.Comparator.comparing;
 
 public class StreamsStuff {
     public static void main(String[] args) {
@@ -34,6 +37,10 @@ public class StreamsStuff {
         int sum = peopleText
             .lines()
             .map(Employee::createEmployee)
+            .map(e -> (Employee)e)
+            .sorted(comparing(Employee::getLastName)
+                .thenComparing(Employee::getFirstName)
+                .thenComparing(Employee::getSalary))
             .mapToInt(StreamsStuff::showEmpAndGetSalary)
             .sum();
         System.out.println(sum);
@@ -63,7 +70,6 @@ public class StreamsStuff {
         //     .map(String::valueOf)
         //     .map(s -> s.concat("-"))
         //     .forEach(System.out::println);
-
     }
 
     public static int showEmpAndGetSalary(IEmployee e) {

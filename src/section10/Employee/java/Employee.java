@@ -9,6 +9,7 @@ import java.util.regex.Pattern;
 public abstract class Employee implements IEmployee {
   protected String lastName;
   protected String firstName;
+
   protected LocalDate dob;
   private static final String PEOPLE_REGEX = "(?<lastName>\\w+),\\s*(?<firstName>\\w+),\\s*(?<dob>\\d{1,2}/\\d{1,2}/\\d{4}),\\s*(?<role>\\w+)(?:,\\s*\\{(?<details>.*)\\})?";
   private final NumberFormat moneyFormat = NumberFormat.getCurrencyInstance();
@@ -45,14 +46,30 @@ public abstract class Employee implements IEmployee {
         case "Manager" -> new Manager(employeeText);
         case "Analyst" -> new Analyst(employeeText);
         case "CEO" -> new CEO(employeeText);
-        default -> () -> 0;
+        default -> new DummyEmployee();
       };
     } else {
-      return () -> 0;
+      return new DummyEmployee();
     }
   }
 
   public abstract int getSalary();
+
+  public String getLastName() {
+    return lastName;
+  }
+
+  public void setLastName(String lastName) {
+    this.lastName = lastName;
+  }
+
+  public String getFirstName() {
+    return firstName;
+  }
+
+  public void setFirstName(String firstName) {
+    this.firstName = firstName;
+  }
 
   public double getBonus() {
     return getSalary() * 1.10;
