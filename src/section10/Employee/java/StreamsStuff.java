@@ -31,36 +31,43 @@ public class StreamsStuff {
             Rubble, Betty, 4/4/1915, CEO, {avgStockPrice=300}
         """;
 
-        peopleText
+        int sum = peopleText
             .lines()
             .map(Employee::createEmployee)
-            .forEach(System.out::println);
+            .mapToInt(StreamsStuff::showEmpAndGetSalary)
+            .sum();
+        System.out.println(sum);
 
-        List<String> nums = List.of("one", "two", "three", "foru");
-        nums
-            .stream()
-            .map(String::hashCode)
-            .map(Integer::toHexString)
-            .forEach(System.out::println);
+        // List<String> nums = List.of("one", "two", "three", "foru");
+        // nums
+        //     .stream()
+        //     .map(String::hashCode)
+        //     .map(Integer::toHexString)
+        //     .forEach(System.out::println);
 
-        Stream.of(1,2,3,4)
-            .map(Integer::toHexString)
-            .forEach(System.out::println);
+        // Stream.of(1,2,3,4)
+        //     .map(Integer::toHexString)
+        //     .forEach(System.out::println);
 
-        record Car(String make, String model){}
+        // record Car(String make, String model){}
 
-        Stream.of(new Car("Ford", "Bronce"), new Car("Tesla", "A"), new Car("Tesla", "3"))
-            .filter(c -> "Tesla".equals(c.make))
-            .forEach(System.out::println);
+        // Stream.of(new Car("Ford", "Bronce"), new Car("Tesla", "A"), new Car("Tesla", "3"))
+        //     .filter(c -> "Tesla".equals(c.make))
+        //     .forEach(System.out::println);
 
-        IntStream.range(1, 101)
-            .forEach(System.out::println);
+        // IntStream.range(1, 101)
+        //     .forEach(System.out::println);
 
-        IntStream.rangeClosed(1, 5)
-            .boxed()
-            .map(String::valueOf)
-            .map(s -> s.concat("-"))
-            .forEach(System.out::println);
+        // IntStream.rangeClosed(1, 5)
+        //     .boxed()
+        //     .map(String::valueOf)
+        //     .map(s -> s.concat("-"))
+        //     .forEach(System.out::println);
 
+    }
+
+    public static int showEmpAndGetSalary(IEmployee e) {
+        System.out.println(e);
+        return e.getSalary();
     }
 }
