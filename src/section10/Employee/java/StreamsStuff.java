@@ -38,6 +38,7 @@ public class StreamsStuff {
             .lines()
             .map(Employee::createEmployee)
             .map(e -> (Employee)e)
+            .filter(e -> e instanceof Programmer)
             .sorted(comparing(Employee::getLastName)
                 .thenComparing(Employee::getFirstName)
                 .thenComparing(Employee::getSalary).reversed())
