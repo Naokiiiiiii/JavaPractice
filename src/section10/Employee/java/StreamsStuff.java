@@ -40,7 +40,7 @@ public class StreamsStuff {
             .map(e -> (Employee)e)
             .sorted(comparing(Employee::getLastName)
                 .thenComparing(Employee::getFirstName)
-                .thenComparing(Employee::getSalary))
+                .thenComparing(Employee::getSalary).reversed())
             .mapToInt(StreamsStuff::showEmpAndGetSalary)
             .sum();
         System.out.println(sum);
