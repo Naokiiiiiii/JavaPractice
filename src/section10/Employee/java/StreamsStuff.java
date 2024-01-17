@@ -7,6 +7,8 @@ import java.util.stream.Stream;
 
 import static java.util.Comparator.comparing;
 
+import java.util.Arrays;
+
 public class StreamsStuff {
     public static void main(String[] args) {
         String peopleText = """
@@ -45,6 +47,17 @@ public class StreamsStuff {
             .mapToInt(StreamsStuff::showEmpAndGetSalary)
             .sum();
         System.out.println(sum);
+
+        peopleText
+            .lines()
+            .map(Employee::createEmployee)
+            .map(e -> (Employee)e)
+            .map(Employee::getFirstName)
+            .map(firstName -> firstName.split(""))
+            .flatMap(Arrays::stream)
+            .map(String::toLowerCase)
+            .distinct()
+            .forEach(System.out::print);
 
         // List<String> nums = List.of("one", "two", "three", "foru");
         // nums
