@@ -2,6 +2,8 @@ package src.section10.Employee.java;
 
 import java.util.Comparator;
 import java.util.List;
+import java.util.Optional;
+import java.util.function.Predicate;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
@@ -58,6 +60,17 @@ public class StreamsStuff {
             .map(String::toLowerCase)
             .distinct()
             .forEach(System.out::print);
+
+        Predicate<Employee> dummySelector = e -> e.getLastName().equals("N/A");
+        Optional<Employee> optionEmp = peopleText
+            .lines()
+            .map(Employee::createEmployee)
+            .map(e -> (Employee)e)
+            .filter(e -> e.getSalary() < 0)
+            .findFirst();
+        System.out.println(optionEmp
+            .map(Employee::getFirstName)
+            .orElse("Nobody"));
 
         // List<String> nums = List.of("one", "two", "three", "foru");
         // nums
