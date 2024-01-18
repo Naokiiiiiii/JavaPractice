@@ -3,6 +3,8 @@ package src.section10.Employee.java;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
+import java.util.OptionalDouble;
+import java.util.OptionalInt;
 import java.util.function.Predicate;
 import java.util.stream.Collector;
 import java.util.stream.Collectors;
@@ -67,7 +69,7 @@ public class StreamsStuff {
         Predicate<Employee> overFiveKSelector = e -> e.getSalary() > 5000;
         Predicate<Employee> noDummiesAndOverFiveK = dummySelector.negate().and(overFiveKSelector);
         
-        int result = peopleText
+        long result = peopleText
             .lines()
             .map(Employee::createEmployee)
             .map(e -> (Employee)e)
@@ -78,7 +80,7 @@ public class StreamsStuff {
                 .thenComparing(Employee::getSalary))
             .skip(5)
             .mapToInt(StreamsStuff::showEmpAndGetSalary)
-            .sum();
+            .reduce(0, (a, b) -> a > b ? a: b);
 
         System.out.println(result);
 
