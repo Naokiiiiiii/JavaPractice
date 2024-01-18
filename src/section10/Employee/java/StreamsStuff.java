@@ -4,6 +4,8 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
 import java.util.function.Predicate;
+import java.util.stream.Collector;
+import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
@@ -61,16 +63,24 @@ public class StreamsStuff {
             .distinct()
             .forEach(System.out::print);
 
-        Predicate<Employee> dummySelector = e -> e.getLastName().equals("N/A");
-        Optional<Employee> optionEmp = peopleText
+        Predicate<Employee> dummySelector = employee -> "N/A".equals(employee.getLastName());
+        Predicate<Employee> overFiveKSelector = e -> e.getSalary() > 5000;
+        Predicate<Employee> noDummiesAndOverFiveK = dummySelector.negate().and(overFiveKSelector);
+        
+        int result = peopleText
             .lines()
             .map(Employee::createEmployee)
             .map(e -> (Employee)e)
-            .filter(e -> e.getSalary() < 0)
-            .findFirst();
-        System.out.println(optionEmp
-            .map(Employee::getFirstName)
-            .orElse("Nobody"));
+            .filter(noDummiesAndOverFiveK)
+            .collect(Collectors.toSet()).stream()
+            .sorted(comparing(Employee::getLastName)
+                .thenComparing(Employee::getFirstName)
+                .thenComparing(Employee::getSalary))
+            .skip(5)
+            .mapToInt(StreamsStuff::showEmpAndGetSalary)
+            .sum();
+
+        System.out.println(result);
 
         // List<String> nums = List.of("one", "two", "three", "foru");
         // nums
