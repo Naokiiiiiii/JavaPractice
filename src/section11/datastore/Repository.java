@@ -2,9 +2,14 @@ package src.section11.datastore;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Function;
 
-public class Repository<T> {
-    record Person(String firstName, String lastName, Long id) {}
+public class Repository<T extends Repository.IDable<V> & Repository.Saveable, V> {
+    record Person(String firstName, String lastName, Long id) implements IDable<Long>, Saveable {}
+    interface Saveable {}
+    interface IDable<U> {
+        U id();
+    }
     private List<T> records = new ArrayList<>();
 
     List<T> findAll() {
@@ -16,21 +21,31 @@ public class Repository<T> {
         return record;
     }
 
-    T findByID(long id) {
-        return records.get(Long.valueOf(id).intValue());
+    T findById(long id) {
+        return records.stream().filter(p -> p.id().equals(id)).findFirst().orElseThrow();
+    }
+
+    static <T, V> V encrypt(T data, Function<T, V> func) {
+        return func.apply(data); 
     }
 
     public static void main(String[] args) {
-        Repository<String> repo = new Repository<>();
-        repo.save("house");
-        repo.save("tree");
-        repo.save("boat");
+        // Repository<String> repo = new Repository<>();
+        // repo.save("house");
+        // repo.save("tree");
+        // repo.save("boat");
 
-        Repository<Person> pRepo = new Repository<>();
-        pRepo.save(new Person("Fred", "Flinstone", 1L));
-        pRepo.save(new Person("Mary", "Johnson", 2L));
+        Repository<Person, Long> pRepo = new Repository<>();
+        pRepo.save(new Person("Fred", "Flinstone", 10L));
+        pRepo.save(new Person("Mary", "Johnson", 20L));
+        pRepo.save(new Person("John", "Smith", 30L));
 
-        System.out.println(repo.findAll());
+        Person foundPerson = pRepo.findById(20L);
+        System.out.println(foundPerson);
+
         System.out.println(pRepo.findAll());
+
+        System.out.println(Repository.<String, String>encrypt("Hello", m -> m.toUpperCase()));
+        System.out.println(Repository.<String, Integer>encrypt("world", m -> m.hashCode()));
     }
 }
