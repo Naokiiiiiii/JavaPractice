@@ -1,6 +1,8 @@
 package src.section11.datastore;
 
+import java.time.Duration;
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.time.Period;
 import java.time.temporal.ChronoUnit;
 
@@ -14,5 +16,18 @@ public class TimeTest {
             .forEach(System.out::println);
 
         System.out.println(now.equals(newYears));
+
+        LocalDate d1 = LocalDate.of(2000, 1, 1);
+        LocalDate d2 = LocalDate.of(2002, 6, 1);
+        System.out.println(d1.compareTo(d2));
+
+        LocalTime lt1 = LocalTime.of(10, 30);
+        LocalTime lt2 = LocalTime.of(10, 30, 1);
+        System.out.println(lt1.equals(lt2));
+
+        Period diff = Period.between(d1, d2);
+        System.out.printf("%d years, %d months, %d days%n", diff.getYears(), diff.getMonths(), diff.getDays());
+
+        System.out.println(Duration.between(lt1, lt2));
     }
 }
