@@ -1,5 +1,6 @@
 package src.section11.datastore;
 
+import java.time.DayOfWeek;
 import java.time.Duration;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -8,6 +9,7 @@ import java.time.Period;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
 import java.time.temporal.ChronoUnit;
+import java.time.temporal.TemporalAdjusters;
 
 public class TimeTest {
     public static void main(String[] args) {
@@ -36,5 +38,7 @@ public class TimeTest {
         LocalDateTime ldt1 = LocalDateTime.of(d1, lt1);
 
         System.out.println(ZonedDateTime.of(ldt1, ZoneId.of("-5")));
+
+        System.out.println(d1.with(TemporalAdjusters.next(DayOfWeek.TUESDAY)));
     }
 }
