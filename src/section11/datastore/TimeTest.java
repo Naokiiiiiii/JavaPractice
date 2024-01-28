@@ -40,5 +40,9 @@ public class TimeTest {
         System.out.println(ZonedDateTime.of(ldt1, ZoneId.of("-5")));
 
         System.out.println(d1.with(TemporalAdjusters.next(DayOfWeek.TUESDAY)));
+
+        System.out.println(d1.with(TemporalAdjusters.lastDayOfYear()).getDayOfWeek());
+
+        System.out.println(d1.withMonth(3).withDayOfMonth(15));
     }
 }
